@@ -1,9 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import Header from "./components/header/Header.vue";
 </script>
 
 <template>
-  <RouterView />
+  <div class="App">
+    <Header :navItems="[]"></Header>
+    <div class="content">
+      <RouterView />
+    </div>
+  </div>
 </template>
 
 <style scoped>
