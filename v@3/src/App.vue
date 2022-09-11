@@ -1,11 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import Header from "./components/header/Header.vue";
+import config from "./config/default";
 </script>
 
 <template>
   <div class="App">
-    <Header :navItems="[]"></Header>
+    <Header :navItems="config.navItems"></Header>
     <div class="content">
       <RouterView />
     </div>

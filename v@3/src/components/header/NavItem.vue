@@ -1,6 +1,6 @@
 <template>
   <li class="nav-item">
-    <router-link class="parsedClass" to="path">{{label}}</router-link>
+    <router-link :class="parsedClass" to="path">{{label}}</router-link>
   </li>
 </template>
 
@@ -18,7 +18,9 @@ export default {
     methods: {
         parseElementClass() {
             let cls = "nav-link";
-            if (this.className) cls = `${cls}  ${className}`;
+            if (this.className) cls = `${cls}  ${this.className}`;
+
+            this.parsedClass = cls;
         }
     }
 }
