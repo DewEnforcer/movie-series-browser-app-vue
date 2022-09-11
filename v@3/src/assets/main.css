@@ -1,35 +1,298 @@
-@import "./base.css";
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+* {
+  padding: 0;
+  margin: 0;
+}
+button {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid white;
+  cursor: pointer;
+  background-color: transparent;
+}
+input {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.App {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000;
+  color: white;
+}
+.content {
+  width: 100%;
+  min-height: calc(100vh - 61px);
+  display: flex;
+  justify-content: center;
+}
+.loader-text {
+  text-align: center !important;
+  align-self: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: white !important;
 }
 
-a,
-.green {
+/* Header */
+.header {
+  min-height: 60px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  padding: 0 2vw;
+  border-bottom: 1px solid white;
+}
+.header ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.header ul li {
+  list-style: none;
+  margin: 0 4px;
+}
+.header ul li:nth-child(2) {
+  font-weight: 600;
+}
+.nav-link {
+  font-size: 18px;
+  color: #fff;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+  border: 1px solid white;
+  padding: 0.3rem;
+}
+.header-search-btn {
+  background-color: #e50914;
+  border-color:  transparent;
+  border-radius: 3px;
+}
+.nav-link .active {
+  text-decoration: underline;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+/* Landing page */
+.landing-page-box {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.landing-page-box h1 {
+  align-self: flex-start;
+  margin: 5vh 0;
+  margin-left: 5vw;
+  color: #e50914;
+}
+
+.movie-list-box {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 100%;
+  padding: 0 5%;
+  box-sizing: border-box;
+  position: relative;
+}
+.movie-list-btn {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  font-size: 1.3rem;
+  border: 2px solid white;
+}
+.movie-list-btn:disabled {
+  border-color: grey;
+  cursor: default;
+  color: grey;
+}
+.movie-list-goback {
+  left: 1vw
+}
+.movie-list-goforward {
+  right: 1vw
+}
+.movie-list-box h2 {
+  padding: 0.2em 0;
+}
+
+.movie-list-content {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 1vh 0;
+}
+.movie-display-box {
+  width: 10vw;
+  height: 30vh;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  cursor: pointer;
+}
+/* movie/series details page*/
+
+.movie-detail-box {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  position: relative;
+}
+
+.btn-exit-details {
+  position: absolute;
+  top: 1vh;
+  left: 1vw;
+  padding: 0.2rem;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.movie-detail-text {
+  padding: 0 1rem;
+  justify-self: center;
+  margin: 10vh 0;
+  margin-left: 5vw;
+}
+
+.movie-detail-text h1 {
+  margin: 2rem 0;
+}
+.movie-detail-text p {
+  margin: 1rem 0;
+}
+
+.movie-detail-metadata-box {
+  border-top: 1px solid black;
+  padding: 1rem 0;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.movie-detail-img {
+  align-self: center;
+  justify-self: center;
+  width: 60%;
+  height: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-watch-movie {
+  width: 10vw;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: .3rem 0;
+  background-color: #e50914;
+  border: transparent;
+  color: white;
+  border-radius: 3px;
+}
+/* play movie page */
+.video-container {
+  background-color: "#000" !important;
+  width: 100%;
+  height: 100vh;
+}
+.video-player-heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 1rem;
+  box-sizing: border-box;
+  color: grey;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+.btn-exit-video {
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+.video-player {
+  width: 100%;
+  height: 100%;
+}
+/* search page */
+.search-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.search-box h1 {
+  align-self: flex-start;
+  margin: 2vh 0;
+  margin-left: 10%;
+}
+.search-bar-wrapper {
+  width: 80%;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  margin-bottom: 10vh;
+}
+.search-bar-wrapper form {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.search-bar-wrapper input {
+  width: 80%;
+  height: 3vh;
+  padding: 0 .2rem;
+  box-sizing: border-box;
+  background-color: rgb(50,50,50);
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+}
+.search-bar-wrapper button {
+  width: 10%;
+  background-color: #e50914;
+  border-color: transparent;
+  border-radius: 3px;
+}
+.search-bar-wrapper button:disabled {
+  cursor: default;
+  color: grey;
+}
+
+@media only screen and (max-width: 600px) {
+  /* MovieList */
+  .movie-list-btn {
+    background-color: rgb(35,35,35);
   }
-}
-
-@media (min-width: 1024px) {
-  body {
+  /* movie/series details page*/
+  .movie-detail-box {
     display: flex;
-    place-items: center;
+    flex-flow: column nowrap;
   }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  .movie-detail-img {
+    width: 80%;
+    height: 80%;
+    background-size: contain;
+  }
+  .movie-detail-text {
+    margin: 2vh 0;
+  }
+  .btn-watch-movie {
+    width: 25vw;
   }
 }
