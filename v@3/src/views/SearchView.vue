@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         async handleSubmitQuery() {
-            if (this.query.trim().length === 0) return this.$vToastify.error(errTexts.SEARCH_QUERY_EMPTY);
+            if (this.query.trim().length === 0) return //this.$vToastify.error(errTexts.SEARCH_QUERY_EMPTY);
 
             this.isSubmitting = true;
             this.isLoading = true;
@@ -41,7 +41,7 @@ export default {
 
             if (status !== 200) { // without the return, the form would get reset although the user got no results resulting in poor user experience
                 console.error("Failed to fetch query results", status, data);
-                this.$vToastify.error(errTexts.SEARCH_RESULT_FETCH_ERROR);
+                //this.$vToastify.error(errTexts.SEARCH_RESULT_FETCH_ERROR);
                 return;
             }
         
