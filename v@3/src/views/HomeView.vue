@@ -26,7 +26,8 @@ export default {
         family: {id: 3, title: "Family", data: []},
         documentary: {id: 4, title: "Documentary", data: []},
       },
-      isLoading: false
+      isLoading: false,
+      config: config
     }
   },
   mounted() {
@@ -34,12 +35,12 @@ export default {
   },
   methods: {
     fetchData() {
-      const {family, documentary} = config.genre_ids;
+      const {family, documentary} = this.config.genre_ids;
       const indexToKey = ["popularMovies", "popularSeries", "family", "documentary"];
 
       Promise.all([getPopularMovies(), getPopularSeries(), getMovieByGenreId(family), getMovieByGenreId(documentary)]).then(values => { 
         values.forEach((val, i) => {
-          this.movieData[indexToKey[i]].data = val;
+          this.movieData[indexToKey[i]].data = [...val.data.results];
         })
       }).catch(err => {
           console.error(err);

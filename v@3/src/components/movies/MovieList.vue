@@ -4,8 +4,8 @@
         <div class="movie-list-content">
             <movie-display v-for="m in displayedResults" :key="m.id" :imgSrc="m.poster_path"></movie-display>
         </div>
-        <button v-if="displayUI" class="movie_list_btn movie_list_goback" :disabled="page === 1" @click="() => handlePageChange(-1)">&#60;</button>
-        <button v-if="displayUI" class="movie_list_btn movie_list_goforward" :disabled="onLastPage" @click="() => handlePageChange(1)">&#62;</button>
+        <button v-if="displayUI" class="movie-list-btn movie-list-goback" :disabled="page === 1" @click="() => handlePageChange(-1)">&#60;</button>
+        <button v-if="displayUI" class="movie-list-btn movie-list-goforward" :disabled="onLastPage" @click="() => handlePageChange(1)">&#62;</button>
     </div>
 </template>
 
@@ -63,7 +63,6 @@ export default {
         },
         changeDisplayedResults() {
             let start = (this.page - 1) * this.MAX_LIST_RESULTS; //calculate the splice start
-        
             if (start + this.MAX_LIST_RESULTS > this.data.length) { //check whether the splicing wouldnt overflow the max results, if so, change the start value to display the last 8 (on default) results available.
                 start = this.data.length - this.MAX_LIST_RESULTS;
                 this.isOnLastPage = true; //it is obvious we are on the "last page" of the results if we would overflow, set it to true
