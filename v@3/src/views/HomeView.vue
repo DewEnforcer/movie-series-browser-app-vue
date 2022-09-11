@@ -20,8 +20,6 @@ export default {
   components: { MovieList, Loader },
   data() {
     return {
-      FAMILY_MOVIE_GENRE_ID = 10751,
-      DOCUMENTARY_MOVIE_GENRE_ID = 99,
       movieData: {
         popularMovies: {id: 1, title: "Popular Movies", data: []},
         popularSeries: {id: 2, title: "Popular Shows", data: []},
@@ -36,9 +34,10 @@ export default {
   },
   methods: {
     fetchData() {
+      const {family, documentary} = config.genre_ids;
       const indexToKey = ["popularMovies", "popularSeries", "family", "documentary"];
 
-      Promise.all([getPopularMovies(), getPopularSeries(), getMovieByGenreId(this.FAMILY_MOVIE_GENRE_ID), getMovieByGenreId(this.DOCUMENTARY_MOVIE_GENRE_ID)]).then(values => { 
+      Promise.all([getPopularMovies(), getPopularSeries(), getMovieByGenreId(family), getMovieByGenreId(documentary)]).then(values => { 
         values.forEach((val, i) => {
           this.movieData[indexToKey[i]].data = val;
         })
