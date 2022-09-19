@@ -1,9 +1,11 @@
 <template>
-    <div class="search box">
+    <div class="search-box">
         <h1>Search</h1>
         <div class="search-bar-wrapper">
-            <input v-model="query" class="search-bar-input" type="text" placeholder="Enter name of a Movie/TV show you are looking for...">
-            <button @click="handleSubmitQuery" :disabled="isSubmitting" type="button">Submit</button>
+            <form>
+                <input v-model="query" class="search-bar-input" type="text" placeholder="Enter name of a Movie/TV show you are looking for...">
+                <button @click="handleSubmitQuery" :disabled="isSubmitting" type="button">Submit</button>
+            </form>
         </div>
         <loader v-if="isLoading"></loader>
         <movie-list :titleWithoutResults="false" :title="'Search results'" :data="queryResults"></movie-list>
