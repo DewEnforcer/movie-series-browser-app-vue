@@ -27,7 +27,6 @@ export default {
     methods: {
         setRender() {
             if (!useRoute().name) return;
-            console.log(useRoute().name);
             return (this.visible = !useRoute().name.includes("play"));
         }
     }

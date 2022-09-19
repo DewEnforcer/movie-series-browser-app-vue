@@ -1,6 +1,6 @@
 <template>
   <li class="nav-item">
-    <router-link :class="parsedClass" to="path">{{label}}</router-link>
+    <router-link :class="parsedClass" :to="path">{{label}}</router-link>
   </li>
 </template>
 
