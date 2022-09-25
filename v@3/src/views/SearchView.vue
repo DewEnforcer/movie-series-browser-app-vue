@@ -18,6 +18,7 @@ import MovieList from '../components/movies/MovieList.vue';
 import errTexts from "../texts/errorTexts";
 
 import { queryMovies } from '../services/movieService';
+import { querySeries } from '../services/seriesService';
 
 export default {
     components: { Loader, MovieList },
@@ -36,19 +37,33 @@ export default {
             this.isSubmitting = true;
             this.isLoading = true;
 
-            const {data: resData, status} = await queryMovies(this.query);
+            const indexToType = ["movie", "tv"];
 
-            this.isSubmitting = false;
-            this.isLoading = false;
 
-            if (status !== 200) { // without the return, the form would get reset although the user got no results resulting in poor user experience
-                console.error("Failed to fetch query results", status, data);
-                //this.$vToastify.error(errTexts.SEARCH_RESULT_FETCH_ERROR);
-                return;
-            }
-        
-            this.queryResults = resData.results;
-            this.query = "";
+            Promise.all([queryMovies(this.query), querySeries(this.query)]).then(values => {
+                values.map((v, i) => {
+                    console.log(i);
+                    v.data.results.forEach(d => d["watchType"] = indexToType[i]);
+                    this.queryResults = [...this.queryResults, ...v.data.results];
+                })
+
+                //sort by date to show the most relevant ones
+                this.queryResults.sort((a, b) => {
+                    const aDate = a.release_date ? a.release_date : a.first_air_date;
+                    const bDate = b.release_date ? b.release_date : b.first_air_date;
+
+                    return new Date(bDate).valueOf() - new Date(aDate).valueOf();
+                })
+
+                console.log(this.queryResults);
+
+
+                this.isSubmitting = false;
+                this.isLoading = false;
+
+                this.query = "";
+            })
+
         }
     }
 }
