@@ -15,6 +15,7 @@ import { getPopularSeries } from '../services/seriesService';
 
 import config from "../config/default"
 import errTexts from "../texts/errorTexts";
+import { useToast } from 'vue-toastification';
 
 export default {
   components: { MovieList, Loader },
@@ -27,7 +28,8 @@ export default {
         documentary: {id: 4, title: "Documentary", data: []},
       },
       isLoading: false,
-      config: config
+      config: config,
+      toast: useToast()
     }
   },
   mounted() {
@@ -47,7 +49,7 @@ export default {
         })
       }).catch(err => {
           console.error(err);
-          //toast.error(errTexts.LANDING_PAGE_FETCH_ERR);
+          this.toast.error(errTexts.LANDING_PAGE_FETCH_ERR);
       })
     }
   }

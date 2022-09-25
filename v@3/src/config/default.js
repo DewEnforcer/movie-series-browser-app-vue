@@ -10,7 +10,12 @@ const def_data = {
     navItems: [
         {id: 1, path: "/", name: "Home", label: "Home", icon: "fa-home"},
         {id: 2, path: "/search", name: "Search", label: "Search", className: "header-search-btn", icon: "fa-search"},
-    ]
+    ],
+    toastConfig: {
+        transition: "Vue-Toastification__bounce",
+        maxToasts: 5,
+        newestOnTop: true
+    }
 };
 
 export default def_data;

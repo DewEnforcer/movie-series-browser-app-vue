@@ -16,6 +16,8 @@
 import Loader from '../components/Loader.vue';
 import MovieList from '../components/movies/MovieList.vue';
 import errTexts from "../texts/errorTexts";
+import { useToast } from "vue-toastification";
+
 
 import { queryMovies } from '../services/movieService';
 import { querySeries } from '../services/seriesService';
@@ -27,12 +29,13 @@ export default {
             isLoading: false,
             isSubmitting: false,
             queryResults: [],
-            query: ""
+            query: "",
+            toast: useToast()
         }
     },
     methods: {
         async handleSubmitQuery() {
-            if (this.query.trim().length === 0) return //this.$vToastify.error(errTexts.SEARCH_QUERY_EMPTY);
+            if (this.query.trim().length === 0) return this.toast.error(errTexts.SEARCH_QUERY_EMPTY);
 
             this.isSubmitting = true;
             this.isLoading = true;
@@ -42,7 +45,6 @@ export default {
 
             Promise.all([queryMovies(this.query), querySeries(this.query)]).then(values => {
                 values.map((v, i) => {
-                    console.log(i);
                     v.data.results.forEach(d => d["watchType"] = indexToType[i]);
                     this.queryResults = [...this.queryResults, ...v.data.results];
                 })
@@ -55,14 +57,14 @@ export default {
                     return new Date(bDate).valueOf() - new Date(aDate).valueOf();
                 })
 
-                console.log(this.queryResults);
-
-
                 this.isSubmitting = false;
                 this.isLoading = false;
 
                 this.query = "";
-            })
+            }).catch((e) => {
+                console.error(e);
+                this.toast.error(errTexts.SEARCH_RESULT_FETCH_ERROR)
+            });
 
         }
     }
