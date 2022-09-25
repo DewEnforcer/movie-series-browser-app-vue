@@ -5,7 +5,7 @@
             <movie-display v-for="m in displayedResults" :key="m.id" :imgSrc="m.poster_path" :data="m"></movie-display>
         </div>
         <button v-if="displayControlls && data.length > 0" class="movie-list-btn movie-list-goback" :disabled="page === 1" @click="() => this.onPageChange(-1)"><i class="fa fa-chevron-left"></i></button>
-        <button v-if="displayControlls && data.length > 0" class="movie-list-btn movie-list-goforward" :disabled="onLastPage" @click="() => this.onPageChange(1)"><i class="fa fa-chevron-right"></i></button>
+        <button v-if="displayControlls && data.length > 0" class="movie-list-btn movie-list-goforward" :disabled="isOnLastPage" @click="() => this.onPageChange(1)"><i class="fa fa-chevron-right"></i></button>
     </div>
 </template>
 
@@ -67,7 +67,7 @@ export default {
         },
         changeDisplayedResults() {
             let start = (this.page - 1) * this.MAX_LIST_RESULTS; //calculate the splice start
-            if (start + this.MAX_LIST_RESULTS > this.data.length) { //check whether the splicing wouldnt overflow the max results, if so, change the start value to display the last 8 (on default) results available.
+            if (start + this.MAX_LIST_RESULTS >= this.data.length) { //check whether the splicing wouldnt overflow the max results, if so, change the start value to display the last 8 (on default) results available.
                 start = this.data.length - this.MAX_LIST_RESULTS;
                 this.isOnLastPage = true; //it is obvious we are on the "last page" of the results if we would overflow, set it to true
             } else this.isOnLastPage = false; //prevents component from being stuck on last page when data array is empty(waiting for http request data)
