@@ -275,7 +275,7 @@ input {
 .search-bar-wrapper input {
   width: 80%;
   height: 3vh;
-  padding: 0 .2rem;
+  padding: 0 1rem;
   box-sizing: border-box;
   background-color: rgb(50,50,50);
   border: 1px solid white;
@@ -287,12 +287,24 @@ input {
   background-color: #e50914;
   border-color: transparent;
   border-radius: 3px;
+  font-size: 100%
 }
 .search-bar-wrapper button:disabled {
   cursor: default;
   color: grey;
 }
-
+@media only screen and (max-width: 768px) {
+  .search-bar-wrapper form {
+    width: 100%;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: .5rem;
+  }
+  .search-bar-wrapper button {
+    width: 30%;
+    padding: 5px 0;
+  }
+}
 @media only screen and (max-width: 600px) {
   /* MovieList */
   .movie-list-btn {
