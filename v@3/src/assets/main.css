@@ -158,6 +158,7 @@ input {
 /* movie/series details page*/
 
 .movie-detail-box {
+  width: 100%;
   display: grid;
   grid-template-columns: 2fr 3fr;
   position: relative;
