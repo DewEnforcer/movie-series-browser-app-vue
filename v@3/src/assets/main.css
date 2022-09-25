@@ -105,6 +105,14 @@ input {
   font-size: 1.3rem;
   border: 2px solid white;
 }
+.movie-list-btn i.fa-chevron-left {
+  margin-top: 2px;
+  margin-right: 4px;
+}
+.movie-list-btn i.fa-chevron-right {
+  margin-top: 2px;
+  margin-left: 4px;
+}
 .movie-list-btn:disabled {
   border-color: grey;
   cursor: default;

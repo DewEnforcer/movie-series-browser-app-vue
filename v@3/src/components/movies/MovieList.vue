@@ -4,8 +4,8 @@
         <div class="movie-list-content">
             <movie-display v-for="m in displayedResults" :key="m.id" :imgSrc="m.poster_path" :data="m"></movie-display>
         </div>
-        <button v-if="displayUI" class="movie-list-btn movie-list-goback" :disabled="page === 1" @click="() => this.onPageChange(-1)">&#60;</button>
-        <button v-if="displayUI" class="movie-list-btn movie-list-goforward" :disabled="onLastPage" @click="() => this.onPageChange(1)">&#62;</button>
+        <button v-if="displayUI" class="movie-list-btn movie-list-goback" :disabled="page === 1" @click="() => this.onPageChange(-1)"><i class="fa fa-chevron-left"></i></button>
+        <button v-if="displayUI" class="movie-list-btn movie-list-goforward" :disabled="onLastPage" @click="() => this.onPageChange(1)"><i class="fa fa-chevron-right"></i></button>
     </div>
 </template>
 
