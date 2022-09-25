@@ -170,8 +170,14 @@ input {
   padding: 0.2rem;
   box-sizing: border-box;
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+.btn-exit-details i {
+  margin-bottom: 3px;
+  margin-right: 0.3rem;
+}
 .movie-detail-text {
   padding: 0 1rem;
   justify-self: center;

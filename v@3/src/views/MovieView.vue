@@ -1,8 +1,8 @@
 <template>
   <div class="movie-detail-box">
-    <button type="button" @click="navigateBack" class="btn-exit-details">Go back</button>
+    <button type="button" @click="navigateBack" class="btn-exit-details"> <i class="fa fa-arrow-left"></i> Go back</button>
     <div class="movie-detail-text">
-        <h1>{{data.name}}</h1>
+        <h1>{{data.name ? data.name : data.title}}</h1>
         <p>{{data.overview}}</p>
         <div class="movie-detail-metadata-box">
             <span v-if="data.release_date">Release date: {{data.release_date}}</span>
