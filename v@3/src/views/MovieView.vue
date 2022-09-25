@@ -15,10 +15,14 @@
 
 <script>
 export default {
+    props: ["id"],
     methods: {
         navigateBack() {
             this.$router.back();
         }
+    },
+    created() {
+        console.log(this.$props);
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <nav-item v-for="item in navItems" :key="item.id" :className="item.className" :path="item.path" :label="item.label"></nav-item>
+        <nav-item v-for="item in navItems" :key="item.id" :className="item.className" :path="item.path" :name="item.name" :label="item.label"></nav-item>
     </ul>
 </template>
 

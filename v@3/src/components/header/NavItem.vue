@@ -1,12 +1,12 @@
 <template>
   <li class="nav-item">
-    <router-link :class="parsedClass" :to="path">{{label}}</router-link>
+    <router-link :class="parsedClass" :to="{name: name}">{{label}}</router-link>
   </li>
 </template>
 
 <script>
 export default {
-    props: ["path", "label", "className"],
+    props: ["path", "name", "label", "className"],
     data() {
         return {
             parsedClass: ""

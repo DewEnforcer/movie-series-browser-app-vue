@@ -9,7 +9,7 @@ export default {
     props: ["imgSrc", "data"],
     methods: {
         handleMovieClick() {
-            this.$router.push({name: "movie", params: {...this.data}});
+            this.$router.push({name: "Movie", params: {id: this.data.id}});
         }
     }
 }
