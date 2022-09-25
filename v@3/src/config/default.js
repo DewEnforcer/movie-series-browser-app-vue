@@ -8,8 +8,8 @@ const def_data = {
         documentary: 99
     },
     navItems: [
-        {id: 1, path: "/", name: "Home", label: "Home"},
-        {id: 2, path: "/search", name: "Search", label: "Search", className: "header-search-btn"},
+        {id: 1, path: "/", name: "Home", label: "Home", icon: "fa-home"},
+        {id: 2, path: "/search", name: "Search", label: "Search", className: "header-search-btn", icon: "fa-search"},
     ]
 };
 

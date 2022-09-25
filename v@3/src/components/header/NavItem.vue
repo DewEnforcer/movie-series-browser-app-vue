@@ -1,12 +1,15 @@
 <template>
   <li class="nav-item">
-    <router-link :class="parsedClass" :to="{name: name}">{{label}}</router-link>
+    <router-link class="nav-item-wrapper" :class="parsedClass" :to="{name: name}">
+        <i v-if="icon" class="fa" :class="icon"></i>
+        {{label}}
+    </router-link>
   </li>
 </template>
 
 <script>
 export default {
-    props: ["path", "name", "label", "className"],
+    props: ["path", "name", "label", "className", "icon"],
     data() {
         return {
             parsedClass: ""
