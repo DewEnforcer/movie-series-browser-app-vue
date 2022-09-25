@@ -13,3 +13,7 @@ export const queryMovies = query => {
     const url = `/search${endPoint}?query=${encodeURIComponent(query)}&page=1&include_adult=false`
     return http.get(url);
 }
+export const searchMovieById = id => {
+    const url = `/movie/${id}`
+    return http.get(url);
+}

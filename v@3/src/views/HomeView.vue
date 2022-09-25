@@ -37,10 +37,13 @@ export default {
     fetchData() {
       const {family, documentary} = this.config.genre_ids;
       const indexToKey = ["popularMovies", "popularSeries", "family", "documentary"];
+      const indexToType = ["movie", "tv", "movie", "movie"];
+
 
       Promise.all([getPopularMovies(), getPopularSeries(), getMovieByGenreId(family), getMovieByGenreId(documentary)]).then(values => { 
         values.forEach((val, i) => {
           this.movieData[indexToKey[i]].data = [...val.data.results];
+          this.movieData[indexToKey[i]].data.forEach(d => d["watchType"] = indexToType[i]);
         })
       }).catch(err => {
           console.error(err);

@@ -10,3 +10,7 @@ export const querySeries = query => {
     const url = `/search${endPoint}?query=${encodeURIComponent(query)}&page=1&include_adult=false`
     return http.get(url);
 }
+export const searchSeriesById = id => {
+    const url = `/tv/${id}`
+    return http.get(url);
+}
