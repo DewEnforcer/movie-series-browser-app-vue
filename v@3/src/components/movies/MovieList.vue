@@ -25,7 +25,7 @@ export default {
     },
     computed: {
         controlsAval() {
-            return this.displayControlls && this.displayedResults.length;
+            return this.displayControlls && this.data.length;
         }
     },
     props: {
