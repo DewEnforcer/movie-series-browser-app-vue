@@ -2,9 +2,9 @@
     <div class="search-box">
         <h1>Search</h1>
         <div class="search-bar-wrapper">
-            <form>
+            <form @submit.prevent="handleSubmitQuery">
                 <input v-model="query" class="search-bar-input" type="text" placeholder="Enter name of a Movie/TV show you are looking for...">
-                <button @click="handleSubmitQuery" :disabled="isSubmitting" type="button">Submit</button>
+                <button :disabled="isSubmitting" type="submit">Submit</button>
             </form>
         </div>
         <loader v-if="isLoading"></loader>
@@ -30,11 +30,13 @@ export default {
             isSubmitting: false,
             queryResults: [],
             query: "",
+            oldQuery: "",
             toast: useToast()
         }
     },
     methods: {
         async handleSubmitQuery() {
+            if (this.oldQuery === this.query) return;
             if (this.query.trim().length === 0) return this.toast.error(errTexts.SEARCH_QUERY_EMPTY);
 
             this.isSubmitting = true;
@@ -60,7 +62,8 @@ export default {
                 this.isSubmitting = false;
                 this.isLoading = false;
 
-                this.query = "";
+                this.oldQuery = this.query;
+                //this.query = "";
             }).catch((e) => {
                 console.error(e);
                 this.toast.error(errTexts.SEARCH_RESULT_FETCH_ERROR)
